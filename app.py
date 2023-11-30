@@ -25,8 +25,9 @@ def show_story():
 
     print(f"This is the template: {silly_story.template}")
 
+    story_result = silly_story.get_result_text(request.args)
+
     return render_template(
         "results.html",
-        story=silly_story.get_result_text(request.args)
-        # call this outside, we're missing the chance to name the story
+        story=story_result
     )
