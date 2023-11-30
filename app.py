@@ -28,4 +28,5 @@ def show_story():
     return render_template(
         "results.html",
         story=silly_story.get_result_text(request.args)
+        # call this outside, we're missing the chance to name the story
     )
