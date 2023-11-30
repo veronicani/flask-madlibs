@@ -22,15 +22,15 @@ class Story:
         """Create story with words and template text."""
 
         self.prompts = words
-        self.template = text
+        self.template = text #"Here is ____ I am ____"
 
     def get_result_text(self, answers):
         """Return result text from dictionary of {prompt: answer, ...}."""
 
-        text = self.template
+        text = self.template # text = "Here is __place__ I am __adj__" {place: Dubai, adj: hairy}
 
         for (key, val) in answers.items():
-            text = text.replace("{" + key + "}", val)
+            text = text.replace("{" + key + "}", val) # text = "Here is Dubai. I am hairy"
 
         return text
 
@@ -42,6 +42,7 @@ silly_story = Story(
     """Once upon a time, in a long-ago {place}, there lived an exceptionally
        {adjective} {noun}. It loved to {verb} with {plural_noun}."""
 )
+# {"place" : "Dubai", "noun" : "rice" , "verb": "eat", "adjective":"hairy", "plural_noun":"ricii"}
 
 # Here's another --- you should be able to swap in app.py to use this story,
 # and everything should still work
