@@ -8,24 +8,24 @@ app.config['SECRET_KEY'] = "secret"
 app.debug = True
 debug = DebugToolbarExtension(app)
 
-
-# silly_story = Story(
-#     ["place", "noun", "verb", "adjective", "plural_noun"],
-#     """Once upon a time, in a long-ago {place}, there lived an exceptionally
-#        {adjective} {noun}. It loved to {verb} with {plural_noun}."""
-# )
-
-@app.get("/")
+@app.get("/questions")
 def index():
-    """Show homepage with customized input fields for the story"""
-    prompts = silly_story.prompts
-    template = silly_story.template
-    # print(f"silly story: {silly_story.prompts}")
-    print(f"prompts: {prompts}, template: {template}")
+    """Show question prompts with customized input fields for the story"""
 
-    # loop over the prompts list in the silly_story
-    # for prompt in prompts:
-        # make an label/input field for each prompt
-        # label text should be the current prompt
-        # form input name is the current prompt
-    # return a template html questions.html, with the custom field inputs
+    return render_template(
+        "questions.html",
+        prompts=silly_story.prompts
+    )
+
+@app.get("/results")
+def show_story():
+    """Displays story on /results page with user inputs from /questions page"""
+
+    print(request.args)
+
+    print(f"This is the template: {silly_story.template}")
+
+    return render_template(
+        "results.html",
+        story=silly_story.get_result_text(request.args)
+    )
