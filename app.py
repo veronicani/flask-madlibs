@@ -16,11 +16,11 @@ debug = DebugToolbarExtension(app)
 # )
 
 @app.get("/")
-def index(silly_story):
+def index():
     """Show homepage with customized input fields for the story"""
-    silly_story.prompts
-    silly_story.template
-    prompts, template = silly_story.items()
+    prompts = silly_story.prompts
+    template = silly_story.template
+    # print(f"silly story: {silly_story.prompts}")
     print(f"prompts: {prompts}, template: {template}")
 
     # loop over the prompts list in the silly_story
